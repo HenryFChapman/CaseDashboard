@@ -85,6 +85,14 @@ def loadMostRecentFile(newestFile, weeklyUpload):
 			tempUpdatedDF["Offense Street Address"] = tempUpdatedDF["Offense Street Address"].fillna('').astype(str) + ", " + tempUpdatedDF["Offense Street Address 2"].fillna('').astype(str) + ", " + tempUpdatedDF["Offense City"].fillna('').astype(str) + ", " + tempUpdatedDF["Offense State"].fillna('').astype(str) + ", " + tempUpdatedDF["Off. Zipcode"].fillna('').astype(str)
 			tempUpdatedDF = tempUpdatedDF.drop(columns=["Def. Street Address2", "Def. City", "Def. State", "Def. Zipcode", "Offense Street Address 2", "Offense City", "Offense State", "Off. Zipcode", "Def. SSN"])
 
+			#print(oldDisposedCases.columns)
+			tempUpdatedDF = tempUpdatedDF[tempUpdatedDF['Def. Name'] != 'badguy, john wayne ']
+			tempUpdatedDF = tempUpdatedDF[~tempUpdatedDF['Def. Name'].str.contains('bogus')]
+			tempUpdatedDF = tempUpdatedDF[~tempUpdatedDF['Def. Name'].str.contains('Bogus')]
+			tempUpdatedDF = tempUpdatedDF[~tempUpdatedDF['Def. Name'].str.contains('darth')]
+			tempUpdatedDF = tempUpdatedDF[~tempUpdatedDF['Def. Name'].str.contains('Darth')]
+			tempUpdatedDF = tempUpdatedDF[~tempUpdatedDF['Def. Name'].str.contains('vader')]
+
 			updatedCompleteDFs.append(tempUpdatedDF)
 			i = i + 1
 	return updatedCompleteDFs

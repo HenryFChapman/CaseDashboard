@@ -147,6 +147,7 @@ def loadConsolidatedCases(directory, mostRecent):
 	disposedCases = disposedCases.rename(columns={'Def  Name': 'Def. Name', 'Enter Dt ': 'Enter Dt.', 'Def  DOB': "Def. DOB", "Def  Race":"Def. Race", "Def Sex":"Def. Sex", "Charge Code":"Ref. Charge Code", "Charge Desctiption": "Ref. Charge Description", 'Filing Date.': 'Filing Dt.'})
 	disposedCases = disposedCases[["File #", "CRN", "Agency", "Disp. Dt.", "Enter Dt.",  "Ref. Charge Code", "Ref. Charge Description", "Disp. Code", ]]
 	oldDisposedCases = oldDisposedCases.append(disposedCases)
+
 	
 	dispositionReasons = pd.read_csv("Disposition Codes.csv")
 	oldDisposedCases = oldDisposedCases.merge(dispositionReasons, on = "Disp. Code", how = 'left')
