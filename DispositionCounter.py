@@ -37,7 +37,8 @@ def disposedCaseCounter(fnList, disposedCaseDF):
     dispositionReasonDF = dispositionReasonDF.groupby('Disp. Reason').size().to_frame().reset_index()
     dispositionReasonDF['source'] = 'C - Cases Disposed'
     dispositionReasonDF = dispositionReasonDF.rename(columns={0: 'value'})
-    dispositionReasonDF['target'] = "D - " + dispositionReasonDF['Disp. Reason']
+
+    dispositionReasonDF['target'] = "D - " + dispositionReasonDF['Disp. Reason'].astype(str)
     dispositionReasonDF = dispositionReasonDF[['source', 'target', 'value']]
     return dispositionReasonDF
 
@@ -84,6 +85,6 @@ def declinedCaseCounter(fnList, declinedCaseDF):
     dispositionReasonDF = dispositionReasonDF.groupby('Disp. Reason').size().to_frame().reset_index()
     dispositionReasonDF['source'] = 'B - Declined'
     dispositionReasonDF = dispositionReasonDF.rename(columns={0: 'value'})
-    dispositionReasonDF['target'] = "C - " + dispositionReasonDF['Disp. Reason']
+    dispositionReasonDF['target'] = "C - " + dispositionReasonDF['Disp. Reason'].astype(str)
     dispositionReasonDF = dispositionReasonDF[['source', 'target', 'value']]
     return dispositionReasonDF

@@ -62,7 +62,13 @@ def getUniqueListOfFiledCases(weeklyUpload):
 	newestFiledCases = newestFiledCases[['File #']]
 
 	#Append the new filed cases to the list of older filed cases
-	filedCases = filedCases.append(newestFiledCases)
+
+	frames = []
+	frames.append(filedCases)
+	frames.append(newestFiledCases)
+
+	filedCases = pd.concat(frames)
+	#filedCases = filedCases.append(newestFiledCases)
 
 	#Drop duplicates to get unique ones
 	filedCases = filedCases.drop_duplicates(subset='File #')
@@ -207,7 +213,14 @@ def combineAllCSVs(year):
 	currentYear['caseCategory'] = caseCategory
 	
 	#Appending The DataFrame to Combined Data
-	currentYear = currentYear.append(combinedData)
+
+	frames = []
+	frames.append(currentYear)
+	frames.append(combinedData)
+
+	currentYear = pd.concat(frames)
+
+	#currentYear = currentYear.append(combinedData)
 
 	#Replacing All with *All
 	currentYear.loc[(currentYear.caseCategory == 'All'),'caseCategory']='*All'

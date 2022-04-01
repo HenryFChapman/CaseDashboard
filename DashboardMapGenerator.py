@@ -57,7 +57,7 @@ def findNonGeocodedCases(addressDictionary, xls):
 	nonGeocodedAddressDataFrame['Street Address'] = nonGeocodedAddressDataFrame['Street Address'].astype(str).str.replace(', , , , ', ',')
 	nonGeocodedAddressDataFrame['Street Address'] = nonGeocodedAddressDataFrame['Street Address'].str.replace(', , , ', ',')
 	nonGeocodedAddressDataFrame['Street Address'] = nonGeocodedAddressDataFrame['Street Address'].str.replace(', , ', ',')
-	nonGeocodedAddressDataFrame['Street Address'] = nonGeocodedAddressDataFrame['Street Address'].str.replace('.0', '')
+	nonGeocodedAddressDataFrame['Street Address'] = nonGeocodedAddressDataFrame['Street Address'].str.replace('.0', '', regex=True)
 	
 	#Dropping NA/Duplicate Addresses and resetting index
 	nonGeocodedAddressDataFrame = nonGeocodedAddressDataFrame.drop_duplicates(subset=['File #'])
@@ -129,7 +129,7 @@ def geocodeCases(addressDictionary, nonGeocodedAddressDataFrame):
 	completedGeocoding['Longitude'] = completedGeocoding['Longitude'].astype(float)
 
 	#Appends to the updated address dictionary, and resets the index
-	addressDictionary = addressDictionary.append(completedGeocoding)
+	addressDictionary = pd.concat([addressDictionary, completedGeocoding])
 	addressDictionary.reset_index()
 
 	#Exports it as a CSV when it's finisehd

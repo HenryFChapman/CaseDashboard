@@ -47,7 +47,6 @@ def generateJCPOCaseHistory(year, crimeCategory, receivedFileNumbers, listOfKarp
 	#Currently Pending = Filed - Disposed
 	activeSet = set(filedFileNumbers).difference(disposedFileNumbers)
 
-	#Review Position
 	reviewPos = len(reviewSet)/len(receivedFileNumbers)
 	declinePos = reviewPos - len(declinedFileNumbers)/len(receivedFileNumbers)
 	filedPos = declinePos - len(filedFileNumbers)/len(receivedFileNumbers)

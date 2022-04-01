@@ -10,6 +10,9 @@ from caseHistoryGenerator import generateJCPOCaseHistory
 import os 
 import shutil
 
+import warnings
+warnings.simplefilter(action='ignore', category = FutureWarning)
+
 # Script: karpelDashboardRunner.py
 # Purpose:  This is the main runner of the karpelDashboardRunner. It collects cases from the shared H-Drive, analyzes them, 
 #           then uploads them to the Karpel Dashboard.
@@ -91,7 +94,7 @@ for year in listOfYears:
 	receivedFileNumbers = list(set(tempCategoryDF['File #'].tolist()))
 	generateJCPOCaseHistory(year, "All", receivedFileNumbers, consolidatedCases)
 
-#Step 2.5 = Run All 2021 Cases - Once it's done with each case category, it'll do all of them
+#Step 2.5 = Run All 2022 Cases - Once it's done with each case category, it'll do all of them
 defendantDemographics(xls, "All", year, jailInmateList, disposedCases, notFiledCases, bondAmounts)
 caseDetails(xls, "All", year)
 
@@ -100,7 +103,7 @@ print("Combining All CSVs")
 combineAllCSVs(year)
 generateCSV()
 
-#Step 4: Run Geocoding Analysis (This Handles the Maping Aspect)
+#Step 4: Run Geocoding Analysis (This Handles the Mapping Aspect)
 print("Geocoding and Preparing Maps")
 geocoderRunner(xls, year)
 
