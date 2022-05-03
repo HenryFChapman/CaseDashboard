@@ -3,8 +3,8 @@ import os
 from openpyxl import load_workbook
 import sys, os
 
-def generateCSV():
-	path = "C:\\Users\\hchapman\\OneDrive - Jackson County Missouri\\Documents\\Dashboards\\KCPD Clearance Dashboard\\Sankeys\\KarpelDashboard\\"
+def generateCSV(homeFolder):
+	path = homeFolder + "KCPD Clearance Dashboard\\Sankeys\\KarpelDashboard\\"
 	sankeys = os.listdir(path)
 	dataSource = []
 	names = []
@@ -108,7 +108,7 @@ def loadMostRecentFile(newestFile, weeklyUpload):
 
 	return updatedCompleteDFs
 
-def loadConsolidatedCases(directory, mostRecent):
+def loadConsolidatedCases(directory, mostRecent, homeFolder):
 	karpelDataFrames = []
 
 	#Old Received Cases
@@ -179,9 +179,9 @@ def loadConsolidatedCases(directory, mostRecent):
 	return karpelDataFrames
 
 
-def caseHistoryCollector():
+def caseHistoryCollector(homeFolder):
 	weeklyUpload = "H:\\Units Attorneys and Staff\\01 - Units\\DT Crime Strategies Unit\\Weekly Update\\"
 	newestFile = getNewestFile(weeklyUpload)
-	updatedDFs = loadConsolidatedCases(weeklyUpload, newestFile)
+	updatedDFs = loadConsolidatedCases(weeklyUpload, newestFile, homeFolder)
 
 	return updatedDFs

@@ -13,7 +13,7 @@ from arcgis.features import FeatureLayerCollection
 # Dependencies:
 #	 External: json, ArcGisPro, pandas
 #	 Functions: main()
-def main():
+def main(homeFolder):
 	print("Starting upload")
 	gis = GIS("home")
 
@@ -24,7 +24,7 @@ def main():
 	flayers = feature_layer_item.tables
 	flayer = flayers[0]
 	flayer.manager.truncate()
-	data_file_location = r'C:\Users\hchapman\OneDrive - Jackson County Missouri\Documents\Dashboards\Karpel Dashboard - v2.0\CombinedDataV2.csv'
+	data_file_location = homeFolder + r'Karpel Dashboard - v2.0\CombinedDataV2.csv'
 	flayerNew = FeatureLayerCollection.fromitem(feature_layer_item)
 	flayerNew.manager.overwrite(data_file_location)
 
@@ -36,7 +36,7 @@ def main():
 	flayers = feature_layer_item.layers
 	flayer = flayers[0]
 	flayer.manager.truncate()
-	data_file_location = r'C:\Users\hchapman\OneDrive - Jackson County Missouri\Documents\Dashboards\Karpel Dashboard - v2.0\Maps\MasterSpatialDataFixedV2.geojson'
+	data_file_location = homeFolder + r'Karpel Dashboard - v2.0\Maps\MasterSpatialDataFixedV2.geojson'
 	flayerNew = FeatureLayerCollection.fromitem(feature_layer_item)
 	flayerNew.manager.overwrite(data_file_location)
 

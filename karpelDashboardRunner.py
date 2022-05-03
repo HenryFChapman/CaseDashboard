@@ -21,19 +21,23 @@ warnings.simplefilter(action='ignore', category = FutureWarning)
 #	 External: Pandas, os, shutil
 #	 Functions: KarpelStarter, DefendantDemographics, Case Details, HelperMethods, DashboardMapGenerator, DataUploaderRunner
 
+
+#Change This Path To Become More Portable
+homeFolder = r"C:\\Users\\hchapman\\OneDrive - Jackson County Missouri\\Documents\\Dashboards\\"
+
 #Step 1: Collect Most Recent Karpel Cases
 print("Starting Karpel")
 karpelStarter()
-consolidatedCases = caseHistoryCollector()
+consolidatedCases = caseHistoryCollector(homeFolder)
 
 #Get List of Crime Categories:
 crimeCategoryList = getListOfCrimeCategories()
 
 #Get List of Jail Inmates
-jailInmateList = pd.read_csv("C:\\Users\\hchapman\\OneDrive - Jackson County Missouri\\Documents\\Dashboards\\Jail Dashboard\\JailInmateLibrary.csv")
+jailInmateList = pd.read_csv(homeFolder + "Jail Dashboard\\JailInmateLibrary.csv")
 
 #Get List of Bond Amounts
-bondAmounts = pd.read_csv("C:\\Users\\hchapman\\OneDrive - Jackson County Missouri\\Documents\\Dashboards\\BondGatherer\\AllBonds.csv")
+bondAmounts = pd.read_csv(homeFolder + "BondGatherer\\AllBonds.csv")
 
 #Get File Numbers of Disposed Cases
 disposedCases = pd.read_csv("AllDisposedFileNumbers.csv")
@@ -101,7 +105,7 @@ caseDetails(xls, "All", year)
 #Step 3: Collect All Analysis into one CSV File
 print("Combining All CSVs")
 combineAllCSVs(year)
-generateCSV()
+generateCSV(homeFolder)
 
 #Step 4: Run Geocoding Analysis (This Handles the Mapping Aspect)
 print("Geocoding and Preparing Maps")
