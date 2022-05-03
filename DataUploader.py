@@ -13,7 +13,10 @@ from arcgis.features import FeatureLayerCollection
 # Dependencies:
 #	 External: json, ArcGisPro, pandas
 #	 Functions: main()
-def main(homeFolder):
+def main():
+
+	homeFolder = r"C:\\Users\\hchapman\\OneDrive - Jackson County Missouri\\Documents\\Dashboards\\"
+
 	print("Starting upload")
 	gis = GIS("home")
 
