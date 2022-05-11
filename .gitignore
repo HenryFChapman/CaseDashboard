@@ -2,6 +2,7 @@
 !.gitattributes
 !.gitignore
 !readme.md
+!requirements.txt
 !.gitkeep
 !*.py
 !*.png
